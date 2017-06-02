@@ -13,6 +13,7 @@ local/
 
 # eclipse configuration files
 target
+out
 .project
 .classes
 .classpath
