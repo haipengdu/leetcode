@@ -6,7 +6,8 @@ package com.hdu;
 public class AddStringNum {
 
   public static  void main(String [] args){
-    CodeUtil.printObject(new AddStringNum().addStrings("99", "777"));
+    int a = 3;
+   // CodeUtil.printObject(new AddStringNum().addStrings("99", "777"));
   }
   public String addStrings(String num1, String num2) {
     if (num1 == null || num1.length() == 0) {

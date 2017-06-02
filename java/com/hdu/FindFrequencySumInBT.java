@@ -14,7 +14,8 @@ import java.util.Map.Entry;
 public class FindFrequencySumInBT {
 
   public static void main(String [] args){
-    CodeUtil.printObject(new FindFrequencySumInBT().frequencySort("tree"));
+    //CodeUtil.printObject(new FindFrequencySumInBT().frequencySort("tree"));
+    CodeUtil.printObject(new FindFrequencySumInBT().arrayNesting(new int [] {5,4,0,3,1,6,2}));
   }
   public int[] findFrequentTreeSum(TreeNode root) {
     Map<Integer, Integer> sumFrequency = new HashMap<>();
@@ -62,5 +63,58 @@ public class FindFrequencySumInBT {
         sb.append(c);
     }
     return sb.toString();
+  }
+
+  public List<Integer> topKFrequent(int[] nums, int k) {
+    if (nums == null || nums.length == 0 || k == 0)
+      return new ArrayList<>();
+    Map<Integer, Integer> frequencies = new HashMap<>();
+    for(int n : nums)
+      frequencies.put(n, frequencies.getOrDefault(n, 0) + 1);
+
+    List<int[]> dataOrders = new ArrayList<>();
+    frequencies.forEach( (n, f) -> dataOrders.add(new int[] {f, n}) );
+    Collections.sort(dataOrders, (a, b) -> b[0] - a[0]);
+
+    List<Integer> result = new ArrayList<>();
+    for(int i = 0; i < dataOrders.size(); i++){
+      result.add(dataOrders.get(i)[1]);
+      if (result.size() == k)
+        break;
+    }
+    return result;
+  }
+
+
+  public int arrayNesting(int[] nums) {
+
+    if ( nums == null || nums.length == 0 )
+      return 0;
+    Map<Integer, Integer> nestingLengths = new HashMap<>();
+    int max = 0;
+    for(int n : nums){
+      int current = getNestingLength(nums, n, nestingLengths);
+      max = Math.max(current, max);
+    }
+    return max;
+  }
+
+  private int getNestingLength(int [] nums, int pos, Map<Integer, Integer> nestingLengths){
+    if ( nestingLengths.get(pos) != null )
+      return nestingLengths.get(pos);
+
+    int length = 1;
+    int nextPos = nums[pos];
+    List<Integer> visitedPositions = new ArrayList<>();
+    visitedPositions.add(pos);
+    while (pos != nextPos){
+      visitedPositions.add(nextPos);
+      nextPos = nums[nextPos];
+      length++;
+    }
+
+    for(int p : visitedPositions)
+      nestingLengths.put(p, length);
+    return length;
   }
 }
