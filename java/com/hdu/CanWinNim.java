@@ -21,4 +21,14 @@ public class CanWinNim {
     }
     return win3;
   }
+
+  public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
+    if ( desiredTotal <= maxChoosableInteger )
+      return true;
+      boolean [] canWin  = new boolean[desiredTotal];
+      for(int i =0; i <= maxChoosableInteger; i++)
+        canWin[i] = true;
+
+      return false;
+  }
 }

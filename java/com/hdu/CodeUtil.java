@@ -1,6 +1,7 @@
 package com.hdu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -34,6 +35,20 @@ public class CodeUtil {
     } else {
       for (Object r : result) {
         System.out.print(r + " ");
+      }
+      System.out.println();
+    }
+    System.out.println(breaker + " cost : " + (System.currentTimeMillis() - t) );
+  }
+
+  public static void printMatrix(int[][] result) {
+    long t = System.currentTimeMillis();
+    System.out.println(breaker);
+    if (result == null) {
+      System.out.println("null");
+    } else {
+      for (int[] r : result) {
+        System.out.println(Arrays.toString(r));
       }
       System.out.println();
     }
